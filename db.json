@@ -1,4 +1,30 @@
 {
   "discounts": [],
-  "categories": []
+  "categories": [
+    {
+      "id": 1,
+      "name": "Роли",
+      "path": "rolls",
+      "imagePath": null
+    },
+    {
+      "id": 2,
+      "name": "Cети",
+      "path": "sets",
+      "imagePath": null
+    },
+    {
+      "id": 3,
+      "name": "Напої",
+      "path": "drinks",
+      "imagePath": null
+    },
+    {
+      "id": 4,
+      "name": "Соуси",
+      "path": "sauces",
+      "imagePath": null
+    }
+  ],
+  "products": []
 }
