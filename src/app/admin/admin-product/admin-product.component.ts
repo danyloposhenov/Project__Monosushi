@@ -5,6 +5,7 @@ import { IProductResponse } from 'src/app/shared/interfaces/product/product.inte
 import { ProductService } from 'src/app/shared/services/product/product.service';
 import { CategoryService } from 'src/app/shared/services/category/category.service';
 import { ImageService } from 'src/app/shared/services/image/image.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-admin-product',
@@ -27,7 +28,8 @@ export class AdminProductComponent {
     private fb: FormBuilder,
     private categoryService: CategoryService,
     private productService: ProductService,
-    private imageService: ImageService
+    private imageService: ImageService,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -69,10 +71,12 @@ export class AdminProductComponent {
     if (this.editStatus) {
       this.productService.update(this.productForm.value, this.currentProductID).subscribe(() => {
         this.loadProducts();
+        this.toastr.success('Product successfully updated');
       })
     } else {
       this.productService.create(this.productForm.value).subscribe(() => {
         this.loadProducts();
+        this.toastr.success('Product successfully created');
       })
     }
     this.editStatus = false;
@@ -101,6 +105,7 @@ export class AdminProductComponent {
   deleteProduct(product: IProductResponse): void {
     this.productService.delete(product.id).subscribe(() => {
       this.loadProducts();
+      this.toastr.success('Product successfully deleted');
     })
   }
 

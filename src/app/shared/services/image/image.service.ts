@@ -20,6 +20,7 @@ export class ImageService {
       try {
         const storageRef = ref(this.storage, path);
         const task = uploadBytesResumable(storageRef, file);
+
         percentage(task).subscribe(data => {
           this.uploadPercent = data.progress;
         })

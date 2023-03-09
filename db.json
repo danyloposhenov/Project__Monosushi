@@ -26,5 +26,22 @@
       "imagePath": null
     }
   ],
-  "products": []
+  "products": [
+    {
+      "category": {
+        "id": 1,
+        "name": "Роли",
+        "path": "rolls",
+        "imagePath": null
+      },
+      "name": "Філадельфія в кунжуті",
+      "path": "rolls",
+      "description": "Рис, крем сир, огірок, лосось, кунжут",
+      "weight": 240,
+      "price": 228,
+      "imagePath": "https://firebasestorage.googleapis.com/v0/b/monosushi-6a750.appspot.com/o/images%2F2.-filadelfiya-v-kunzhuti.jpg?alt=media&token=a6543b69-6e12-4de3-bcba-956f44f2169f",
+      "count": 1,
+      "id": 1
+    }
+  ]
 }

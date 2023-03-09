@@ -1,1 +1,198 @@
-<p>product works!</p>
+<div class="container">
+  <section class="title">
+    <div class="title__line"></div>
+    <h2 class="title__text">Роли</h2>
+  </section>
+  <section class="menu">
+    <ul class="list">
+      <li class="list__item active">
+        <a>Всі</a>
+      </li>
+      <li class="list__item">
+        <a>Філадельфія</a>
+      </li>
+      <li class="list__item">
+        <a>Каліфорнія</a>
+      </li>
+      <li class="list__item">
+        <a>Запечені</a>
+      </li>
+      <li class="list__item">
+        <a>Фірмові</a>
+      </li>
+      <li class="list__item">
+        <a>Преміум</a>
+      </li>
+      <li class="list__item">
+        <a>Макі</a>
+      </li>
+    </ul>
+    <ul class="product">
+      <li class="product-item" *ngFor="let product of userProducts">
+        <div class="product-item__image">
+          <a href="#">
+            <img [src]="product.imagePath" alt="">
+          </a>
+        </div>
+        <h3 class="product-item__title">
+          <a href="#"> {{ product.name }} </a>
+        </h3>
+        <div class="product-item__desc">
+          <p> {{ product.description }} </p>
+          <div> {{ product.weight }} г</div>
+        </div>
+        <div class="product-item__controls">
+          <p> {{ product.price }} грн</p>
+          <div class="product-item__controls-count">
+            <button type="button">-</button>
+            <input type="text" value="1">
+            <button type="button">+</button>
+          </div>
+          <button class="product-item__controls-order">замовити</button>
+        </div>
+      </li>
+      <li class="product-item" *ngFor="let product of userProducts">
+        <div class="product-item__image">
+          <a href="#">
+            <img [src]="product.imagePath" alt="">
+          </a>
+        </div>
+        <h3 class="product-item__title">
+          <a href="#"> {{ product.name }} </a>
+        </h3>
+        <div class="product-item__desc">
+          <p> {{ product.description }} </p>
+          <div> {{ product.weight }} г</div>
+        </div>
+        <div class="product-item__controls">
+          <p> {{ product.price }} грн</p>
+          <div class="product-item__controls-count">
+            <button type="button">-</button>
+            <input type="text" value="1">
+            <button type="button">+</button>
+          </div>
+          <button class="product-item__controls-order">замовити</button>
+        </div>
+      </li>
+      <li class="product-item" *ngFor="let product of userProducts">
+        <div class="product-item__image">
+          <a href="#">
+            <img [src]="product.imagePath" alt="">
+          </a>
+        </div>
+        <h3 class="product-item__title">
+          <a href="#"> {{ product.name }} </a>
+        </h3>
+        <div class="product-item__desc">
+          <p> {{ product.description }} </p>
+          <div> {{ product.weight }} г</div>
+        </div>
+        <div class="product-item__controls">
+          <p> {{ product.price }} грн</p>
+          <div class="product-item__controls-count">
+            <button type="button">-</button>
+            <input type="text" value="1">
+            <button type="button">+</button>
+          </div>
+          <button class="product-item__controls-order">замовити</button>
+        </div>
+      </li>
+      <li class="product-item" *ngFor="let product of userProducts">
+        <div class="product-item__image">
+          <a href="#">
+            <img [src]="product.imagePath" alt="">
+          </a>
+        </div>
+        <h3 class="product-item__title">
+          <a href="#"> {{ product.name }} </a>
+        </h3>
+        <div class="product-item__desc">
+          <p> {{ product.description }} </p>
+          <div> {{ product.weight }} г</div>
+        </div>
+        <div class="product-item__controls">
+          <p> {{ product.price }} грн</p>
+          <div class="product-item__controls-count">
+            <button type="button">-</button>
+            <input type="text" value="1">
+            <button type="button">+</button>
+          </div>
+          <button class="product-item__controls-order">замовити</button>
+        </div>
+      </li>
+      <li class="product-item" *ngFor="let product of userProducts">
+        <div class="product-item__image">
+          <a href="#">
+            <img [src]="product.imagePath" alt="">
+          </a>
+        </div>
+        <h3 class="product-item__title">
+          <a href="#"> {{ product.name }} </a>
+        </h3>
+        <div class="product-item__desc">
+          <p> {{ product.description }} </p>
+          <div> {{ product.weight }} г</div>
+        </div>
+        <div class="product-item__controls">
+          <p> {{ product.price }} грн</p>
+          <div class="product-item__controls-count">
+            <button type="button">-</button>
+            <input type="text" value="1">
+            <button type="button">+</button>
+          </div>
+          <button class="product-item__controls-order">замовити</button>
+        </div>
+      </li>
+      <li class="product-item" *ngFor="let product of userProducts">
+        <div class="product-item__image">
+          <a href="#">
+            <img [src]="product.imagePath" alt="">
+          </a>
+        </div>
+        <h3 class="product-item__title">
+          <a href="#"> {{ product.name }} </a>
+        </h3>
+        <div class="product-item__desc">
+          <p> {{ product.description }} </p>
+          <div> {{ product.weight }} г</div>
+        </div>
+        <div class="product-item__controls">
+          <p> {{ product.price }} грн</p>
+          <div class="product-item__controls-count">
+            <button type="button">-</button>
+            <input type="text" value="1">
+            <button type="button">+</button>
+          </div>
+          <button class="product-item__controls-order">замовити</button>
+        </div>
+      </li>
+      <li class="product-item" *ngFor="let product of userProducts">
+        <div class="product-item__image">
+          <a href="#">
+            <img [src]="product.imagePath" alt="">
+          </a>
+        </div>
+        <h3 class="product-item__title">
+          <a href="#"> {{ product.name }} </a>
+        </h3>
+        <div class="product-item__desc">
+          <p> {{ product.description }} </p>
+          <div> {{ product.weight }} г</div>
+        </div>
+        <div class="product-item__controls">
+          <p> {{ product.price }} грн</p>
+          <div class="product-item__controls-count">
+            <button type="button">-</button>
+            <input type="text" value="1">
+            <button type="button">+</button>
+          </div>
+          <button class="product-item__controls-order">замовити</button>
+        </div>
+      </li>
+
+    </ul>
+  </section>
+
+
+
+</div>

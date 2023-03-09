@@ -31,6 +31,8 @@
   &-content {
     width: 100%;
     tr {
+      word-wrap: break-word;
+      padding-right: 5px;
       border-bottom: 2px solid lightgrey;
     }
     td {
