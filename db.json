@@ -1,5 +1,14 @@
 {
-  "discounts": [],
+  "discounts": [
+    {
+      "date": "2023-03-10T09:20:34.195Z",
+      "name": "Рол тижня",
+      "title": "Рол тижня",
+      "description": "Щотижня діє знижка 50% на один з ролів у нашому меню.\n“Рол тижня” ви можете знайти на головній сторінці нашого сайту.\nЗнижка діє при мінімальній сумі замовлення 300 грн.\nЦя акція не поєднується з іншими акціями.",
+      "imagePath": "https://firebasestorage.googleapis.com/v0/b/monosushi-6a750.appspot.com/o/images%2Fimgonline-com-ua-compressed-ryna9n84oqh1-scaled-697x379.jpg?alt=media&token=beb2c4fb-93fb-4bcf-aac4-a7b0c7f9f670",
+      "id": 1
+    }
+  ],
   "categories": [
     {
       "id": 1,
@@ -37,11 +46,59 @@
       "name": "Філадельфія в кунжуті",
       "path": "rolls",
       "description": "Рис, крем сир, огірок, лосось, кунжут",
-      "weight": 240,
+      "weight": "240 г",
       "price": 228,
       "imagePath": "https://firebasestorage.googleapis.com/v0/b/monosushi-6a750.appspot.com/o/images%2F2.-filadelfiya-v-kunzhuti.jpg?alt=media&token=a6543b69-6e12-4de3-bcba-956f44f2169f",
       "count": 1,
       "id": 1
+    },
+    {
+      "category": {
+        "id": 2,
+        "name": "Cети",
+        "path": "sets",
+        "imagePath": null
+      },
+      "name": "Запечений сет",
+      "path": "zapechenyj-set-2",
+      "description": "Запечений сирний з креветкою\nЗапечений моно з лососем",
+      "weight": "680 г",
+      "price": 540,
+      "imagePath": "https://firebasestorage.googleapis.com/v0/b/monosushi-6a750.appspot.com/o/images%2Fimgonline-com-ua-compressed-wnclohqe80-scaled.jpg.pagespeed.ce.DxC77gzUKm.jpg?alt=media&token=a28f1274-7f47-401c-99f7-ebdb6cb9e6b9",
+      "count": 1,
+      "id": 2
+    },
+    {
+      "category": {
+        "id": 3,
+        "name": "Напої",
+        "path": "drinks",
+        "imagePath": null
+      },
+      "name": "Сік яблучно-вишневий “Galicia”",
+      "path": "sik-yabluchno-vyshnevyj-galicia-1-l",
+      "description": "-",
+      "weight": "1 л",
+      "price": 62,
+      "imagePath": "https://firebasestorage.googleapis.com/v0/b/monosushi-6a750.appspot.com/o/images%2Fvyshnya.jpg.pagespeed.ce.iY9kOo6fsA.jpg?alt=media&token=9cc15735-2038-4f58-90ad-d958f82dee90",
+      "count": null,
+      "id": 3
+    },
+    {
+      "category": {
+        "id": 4,
+        "name": "Соуси",
+        "path": "sauces",
+        "imagePath": null
+      },
+      "name": "Імбир",
+      "path": "imbyr",
+      "description": "-",
+      "weight": "30 г",
+      "price": 12,
+      "imagePath": "https://firebasestorage.googleapis.com/v0/b/monosushi-6a750.appspot.com/o/images%2F3333.png.pagespeed.ce.vQR20Z8Iaq.png?alt=media&token=2b32c473-f65e-447b-ba64-499c9a8ef57e",
+      "count": null,
+      "id": 4
     }
   ]
 }

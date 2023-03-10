@@ -16,12 +16,12 @@
       </thead>
       <tbody class="table-content">
         <tr *ngFor="let product of adminProducts">
-          <td>№ {{ product.id }}</td>
-          <td>{{ product.category.name }}</td>
-          <td>{{ product.name }}</td>
-          <td>{{ product.description }}</td>
-          <td>{{ product.weight }} г</td>
-          <td>{{ product.price }} грн</td>
+          <td> № {{ product.id }} </td>
+          <td> {{ product.category.name }} </td>
+          <td> {{ product.name }} </td>
+          <td> {{ product.description }} </td>
+          <td> {{ product.weight }} </td>
+          <td> {{ product.price }} грн</td>
           <td>
             <div>
               <img [src]="product.imagePath" alt="">
@@ -55,7 +55,7 @@
         </div>
         <textarea formControlName="description" name="description" class="forms__field" placeholder="*Опис"></textarea>
         <div class="forms__input">
-          <input formControlName="weight" name="weight" type="number" placeholder="*Вага">
+          <input formControlName="weight" name="weight" type="text" placeholder="*Вага">
           <input formControlName="price" name="price" type="number" placeholder="*Ціна">
         </div>
         <ng-container *ngIf="!isUploaded">
