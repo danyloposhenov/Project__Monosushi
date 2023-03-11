@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import { ROLE } from 'src/app/shared/constants/role.constant';
 import { IProductResponse } from 'src/app/shared/interfaces/product/product.interface';
+import { AccountService } from 'src/app/shared/services/account/account.service';
 import { OrderService } from 'src/app/shared/services/order/order.service';
 
 @Component({
@@ -9,16 +11,24 @@ import { OrderService } from 'src/app/shared/services/order/order.service';
 })
 export class HeaderComponent {
   public burgerList = false;
+  public isLogin = false;
+  public loginPage = '';
+  public loginUrl = '';
   public total = 0;
   public basket: Array<IProductResponse> = [];
   public openModal = false;
   public openModalOrder = false;
 
-  constructor ( private orderService: OrderService ) {  }
+  constructor (
+    private orderService: OrderService,
+    private accountService: AccountService
+  ) { }
 
   ngOnInit(): void {
     this.loadBasket();
     this.updateBasket();
+    this.checkUserLogin();
+    this.updateCheckUserLogin();
   }
 
   loadBasket(): void {
@@ -42,8 +52,28 @@ export class HeaderComponent {
     })
   }
 
+  checkUserLogin(): void {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser') as string);
+    if (currentUser && currentUser.role === ROLE.ADMIN) {
+      this.isLogin = true;
+      this.loginUrl = 'admin';
+      this.loginPage = 'Admin';
+    } else if (currentUser && currentUser.role === ROLE.USER) {
+      this.isLogin = true;
+      this.loginUrl = 'cabinet';
+      this.loginPage = 'Cabinet';
+    } else {
+      this.isLogin = false;
+      this.loginUrl = '';
+      this.loginPage = '';
+    }
+  }
 
-
+  updateCheckUserLogin(): void {
+    this.accountService.isUserLogin$.subscribe(() => {
+      this.checkUserLogin();
+    })
+  }
 
   modal(): void {
     if (this.openModal) {

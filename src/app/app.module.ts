@@ -31,6 +31,8 @@ import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { provideStorage,getStorage } from '@angular/fire/storage';
 
 import { ToastrModule } from 'ngx-toastr';
+import { AuthorizationComponent } from './pages/authorization/authorization/authorization.component';
+import { CabinetComponent } from './pages/cabinet/cabinet/cabinet.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,9 @@ import { ToastrModule } from 'ngx-toastr';
     AdminCategoryComponent,
     AdminProductComponent,
     AdminDiscountComponent,
-    AdminOrderComponent
+    AdminOrderComponent,
+    AuthorizationComponent,
+    CabinetComponent
   ],
   imports: [
     BrowserModule,
