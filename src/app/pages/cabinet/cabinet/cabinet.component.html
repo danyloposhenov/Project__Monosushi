@@ -1,1 +1,50 @@
-<button type="button" (click)="logOut()">Exit</button>
+<div class="container">
+  <div class="nav">
+    <ul class="nav-list">
+      <li>
+        <a class="nav-list__link" [routerLink]="[ '/cabinet' ]" routerLinkActive="route-active">Особисті</a>
+      </li>
+      <li>
+        <a class="nav-list__link" [routerLink]="[ ' ' ]" routerLinkActive="route-active">Історії замовлень</a>
+      </li>
+    </ul>
+    <div class="nav-exit">
+      <button type="button" class="nav-exit__btn" (click)="logOut()">Exit</button>
+    </div>
+  </div>
+  <div class="info">
+    <form>
+      <div class="profile">
+        <h3 class="profile-title title">
+          <span>1</span>
+          Особисті дані</h3>
+        <mat-form-field appearance="outline" class="profile-input-half">
+          <mat-label>Ваше ім'я</mat-label>
+          <input matInput type="text">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="profile-input-half">
+          <mat-label>Ваше прізвище</mat-label>
+          <input matInput type="text" >
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="profile-input">
+          <mat-label>Ваш номер телефону</mat-label>
+          <input matInput type="text" >
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="profile-input">
+          <mat-label>Ваш email</mat-label>
+          <input matInput type="text" >
+        </mat-form-field>
+      </div>
+      <div class="address">
+        <h3 class="address-title title">
+          <span>2</span>
+          Особисті дані</h3>
+        <div class="address-btn">
+          <button id="add">Додати адресу</button>
+          <button id="save">Зберегти зміну</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+

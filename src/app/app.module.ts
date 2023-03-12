@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -27,12 +26,17 @@ import { AdminProductComponent } from './admin/admin-product/admin-product.compo
 import { AdminDiscountComponent } from './admin/admin-discount/admin-discount.component';
 import { AdminOrderComponent } from './admin/admin-order/admin-order.component';
 import { environment } from '../environments/environment';
-import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
-import { provideStorage,getStorage } from '@angular/fire/storage';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { provideStorage, getStorage } from '@angular/fire/storage';
+import { provideFirestore, getFirestore } from '@angular/fire/firestore';
+import { provideAuth, getAuth } from '@angular/fire/auth';
 
 import { ToastrModule } from 'ngx-toastr';
 import { AuthorizationComponent } from './pages/authorization/authorization/authorization.component';
 import { CabinetComponent } from './pages/cabinet/cabinet/cabinet.component';
+import { AuthDialogComponent } from './components/auth-dialog/auth-dialog.component';
+import { SharedModule } from './shared/shared.module';
+
 
 @NgModule({
   declarations: [
@@ -53,7 +57,8 @@ import { CabinetComponent } from './pages/cabinet/cabinet/cabinet.component';
     AdminDiscountComponent,
     AdminOrderComponent,
     AuthorizationComponent,
-    CabinetComponent
+    CabinetComponent,
+    AuthDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -64,7 +69,10 @@ import { CabinetComponent } from './pages/cabinet/cabinet/cabinet.component';
     HttpClientModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideStorage(() => getStorage()),
+    provideAuth(() => getAuth()),
+    provideFirestore(() => getFirestore()),
     ToastrModule.forRoot(),
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

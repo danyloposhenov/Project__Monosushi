@@ -92,8 +92,15 @@
     <p class="contact__info">Працюємо з <span>11:00</span> до <span>23:59</span></p>
   </div>
   <div class="admin">
-    <ng-container *ngIf="!isLogin">
+    <!-- <ng-container *ngIf="!isLogin">
       <a [routerLink]="[ '/auth' ]" routerLinkActive="route-active">
+        <img
+          src="https://firebasestorage.googleapis.com/v0/b/monosushi-6a750.appspot.com/o/static%2Fuser.svg?alt=media&token=9ac122e9-dc2d-4e0e-b9e9-ed9fa0451fdc"
+          alt="">
+      </a>
+    </ng-container> -->
+     <ng-container *ngIf="!isLogin">
+      <a (click)="openLoginDialog()">
         <img
           src="https://firebasestorage.googleapis.com/v0/b/monosushi-6a750.appspot.com/o/static%2Fuser.svg?alt=media&token=9ac122e9-dc2d-4e0e-b9e9-ed9fa0451fdc"
           alt="">
