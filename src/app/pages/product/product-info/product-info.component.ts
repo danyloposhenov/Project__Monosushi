@@ -48,7 +48,7 @@ export class ProductInfoComponent implements OnInit {
         const index = basket.findIndex(prod => prod.id === product.id);
         basket[index].count += product.count;
       } else {
-        basket.push(product)
+        basket.push(product);
       }
     } else {
       basket.push(product);
@@ -56,7 +56,5 @@ export class ProductInfoComponent implements OnInit {
     localStorage.setItem('basket', JSON.stringify(basket));
     product.count = 1;
     this.orderService.changeBasket.next(true);
-
   }
-
 }

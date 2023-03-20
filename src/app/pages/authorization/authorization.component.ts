@@ -32,7 +32,9 @@ export class AuthorizationComponent implements OnInit, OnDestroy {
     this.initAuthForm();
   }
   ngOnDestroy(): void {
-    this.loginSubscription.unsubscribe();
+    if(this.loginSubscription) {
+      this.loginSubscription.unsubscribe();
+    }
   }
 
   initAuthForm(): void {
@@ -47,7 +49,7 @@ export class AuthorizationComponent implements OnInit, OnDestroy {
     this.login(email, password).then(() => {
       this.toastr.success('User logined successfully');
     }).catch(e => {
-      this.toastr.error(e.message);
+      this.toastr.error(e);
     })
   }
 

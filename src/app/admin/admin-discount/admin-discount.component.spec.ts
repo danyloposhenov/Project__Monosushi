@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AdminDiscountComponent } from './admin-discount.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { Storage } from '@angular/fire/storage';
 
 describe('AdminDiscountComponent', () => {
   let component: AdminDiscountComponent;
@@ -8,7 +10,13 @@ describe('AdminDiscountComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AdminDiscountComponent ]
+      declarations: [ AdminDiscountComponent ],
+      imports: [
+        HttpClientTestingModule
+      ],
+      providers: [
+        { provide: Storage, useValue: {} },
+      ]
     })
     .compileComponents();
 

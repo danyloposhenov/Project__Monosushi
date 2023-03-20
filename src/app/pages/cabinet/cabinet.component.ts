@@ -9,11 +9,10 @@ import { AccountService } from 'src/app/shared/services/account/account.service'
 })
 export class CabinetComponent {
 
-  constructor(
+  constructor (
     private accountService: AccountService,
     private router: Router
   ) {}
-
 
   logOut(): void {
     this.router.navigate(['/'])

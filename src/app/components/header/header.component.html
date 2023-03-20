@@ -1,4 +1,4 @@
-<header class="container">
+<div class="container">
   <a class="logo" [routerLink]="[ '' ]" routerLinkActive="route-active">
     <img
       src="https://firebasestorage.googleapis.com/v0/b/monosushi-6a750.appspot.com/o/static%2Flogo.svg?alt=media&token=8fe3025d-2bf8-46f8-8418-6b65af9ed95a"
@@ -81,7 +81,7 @@
       </ul>
     </ng-container>
   </div>
-  <button class="callback">
+  <button class="callback" (click)="openCallbackDialog()">
     <img
       src="https://firebasestorage.googleapis.com/v0/b/monosushi-6a750.appspot.com/o/static%2Fphone.svg?alt=media&token=8c2ccadb-f793-41fe-bfed-6f271ee2b7e5"
       alt="">
@@ -92,14 +92,7 @@
     <p class="contact__info">Працюємо з <span>11:00</span> до <span>23:59</span></p>
   </div>
   <div class="admin">
-    <!-- <ng-container *ngIf="!isLogin">
-      <a [routerLink]="[ '/auth' ]" routerLinkActive="route-active">
-        <img
-          src="https://firebasestorage.googleapis.com/v0/b/monosushi-6a750.appspot.com/o/static%2Fuser.svg?alt=media&token=9ac122e9-dc2d-4e0e-b9e9-ed9fa0451fdc"
-          alt="">
-      </a>
-    </ng-container> -->
-     <ng-container *ngIf="!isLogin">
+    <ng-container *ngIf="!isLogin">
       <a (click)="openLoginDialog()">
         <img
           src="https://firebasestorage.googleapis.com/v0/b/monosushi-6a750.appspot.com/o/static%2Fuser.svg?alt=media&token=9ac122e9-dc2d-4e0e-b9e9-ed9fa0451fdc"
@@ -110,59 +103,13 @@
       <a [routerLink]="[ '/'+loginUrl ]" routerLinkActive="route-active"> {{ loginPage }} </a>
     </ng-container>
   </div>
-  <div class="checkout" (click)="modal()">
+  <div class="checkout">
     <a>
       <img
+        (click)="openBasketDialog()"
         src="https://firebasestorage.googleapis.com/v0/b/monosushi-6a750.appspot.com/o/static%2Fbasket.svg?alt=media&token=6d3fba7c-19c1-4cb9-ade5-e8ee440f2d80"
         alt="">
-      <span>0</span>
+      <span> {{ amountProducts }} </span>
     </a>
     <p> {{ total }} грн</p>
-    <ng-container *ngIf="openModal">
-      <div class="modal">
-        <div class="modal-info">
-          <ng-container *ngIf="!openModalOrder">
-            <div class="modal-info-empty">
-              <div>
-                <img
-                  src="https://firebasestorage.googleapis.com/v0/b/monosushi-6a750.appspot.com/o/static%2Fcart-empty-img.svg?alt=media&token=395d7fb5-9eb4-4881-a00e-c8f3273bd847"
-                  alt="">
-              </div>
-              <h3>Кошик порожній</h3>
-              <a [routerLink]="[ '' ]">перейти до каталогу</a>
-            </div>
-          </ng-container>
-          <ng-container *ngIf="openModalOrder">
-            <ul>
-              <li class="modal-info-product" *ngFor="let product of basket">
-                <div class="modal-info-product__image">
-                  <img [src]="product.imagePath" alt="">
-                </div>
-                <div class="modal-info-product__name">{{ product.name }}</div>
-                <div class="modal-info-product__controls">
-                  <button type="button">-</button>
-                  <input type="text" [value]="product.count">
-                  <button type="button">+</button>
-                </div>
-                <div class="modal-info-product__total">
-                  <span> {{ product.price * product.count }} </span>грн
-                </div>
-                <div class="modal-info-product__delete">
-                  <img
-                    src="https://firebasestorage.googleapis.com/v0/b/monosushi-6a750.appspot.com/o/static%2Ftrash-alt.svg?alt=media&token=13668282-6f0d-46bd-bacb-222095e89b52"
-                    alt="">
-                </div>
-              </li>
-            </ul>
-          </ng-container>
-        </div>
-        <div class="modal-order">
-          <div class="modal-order__total">
-            Сума: <span>{{ total }}</span> грн
-          </div>
-          <a class="modal-order__checkout">Оформити замовлення</a>
-        </div>
-      </div>
-    </ng-container>
-  </div>
-</header>
+</div>

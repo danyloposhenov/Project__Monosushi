@@ -4,27 +4,23 @@
 }
 
 .poster {
-  position: relative;
-  z-index: 1;
   width: 100%;
-  img {
-    width: 100%;
-  }
+  height: 500px;
+  padding: 20px 0;
+  background-image: url('https://firebasestorage.googleapis.com/v0/b/monosushi-6a750.appspot.com/o/static%2Fhome.jpg?alt=media&token=73b81035-91a5-4654-a357-282f11f6fdf2');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
   &-info {
-    width: 100%;
-    padding: 60px 0;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 2;
+    width: 60%;
+    height: 100%;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: left;
+    justify-content: space-between;
     color: white;
     &__title {
-      width: 40%;
       font-size: 34px;
       font-weight: 700;
       span {
@@ -32,14 +28,14 @@
       }
     }
     &__text {
-      width: 40%;
-      margin-top: 230px;
+      width: 65%;
       margin-bottom: 20px;
       font-size: 18px;
       color: rgb(199, 199, 199);
       line-height: 1.3;
     }
     &__btn {
+      margin-top: 15px;
       width: 40%;
       a {
         display: inline-flex;
@@ -64,12 +60,14 @@
 
 .info {
   max-width: 1920px;
-  height: 200px;
+  height: 150px;
+  padding: 10px 0;
   background-color: #b5d8f7;
   display: flex;
   align-items: center;
   &-box {
     flex: 0 1 33%;
+    padding: 0 5px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -81,12 +79,10 @@
       font-weight: 700;
     }
     &__image {
-      width: 150px;
-      height: 150px;
       margin-right: 20px;
       img {
         width: 100%;
-        height: 150px;
+        height: 120px;
       }
     }
     &__delivery {

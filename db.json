@@ -81,7 +81,7 @@
       "weight": "1 л",
       "price": 62,
       "imagePath": "https://firebasestorage.googleapis.com/v0/b/monosushi-6a750.appspot.com/o/images%2Fvyshnya.jpg.pagespeed.ce.iY9kOo6fsA.jpg?alt=media&token=9cc15735-2038-4f58-90ad-d958f82dee90",
-      "count": null,
+      "count": 1,
       "id": 3
     },
     {
@@ -97,7 +97,7 @@
       "weight": "30 г",
       "price": 12,
       "imagePath": "https://firebasestorage.googleapis.com/v0/b/monosushi-6a750.appspot.com/o/images%2F3333.png.pagespeed.ce.vQR20Z8Iaq.png?alt=media&token=2b32c473-f65e-447b-ba64-499c9a8ef57e",
-      "count": null,
+      "count": 1,
       "id": 4
     }
   ],

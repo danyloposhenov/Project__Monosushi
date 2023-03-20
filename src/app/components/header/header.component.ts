@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { CheckoutComponent } from 'src/app/pages/checkout/checkout.component';
 import { ROLE } from 'src/app/shared/constants/role.constant';
 import { IProductResponse } from 'src/app/shared/interfaces/product/product.interface';
 import { AccountService } from 'src/app/shared/services/account/account.service';
 import { OrderService } from 'src/app/shared/services/order/order.service';
 import { AuthDialogComponent } from '../auth-dialog/auth-dialog.component';
+import { BasketComponent } from '../basket/basket.component';
+import { CallbackComponent } from '../callback/callback.component';
 
 @Component({
   selector: 'app-header',
@@ -16,15 +19,14 @@ export class HeaderComponent {
   public isLogin = false;
   public loginPage = '';
   public loginUrl = '';
-  public total = 0;
   public basket: Array<IProductResponse> = [];
-  public openModal = false;
-  public openModalOrder = false;
+  public total = 0;
+  public amountProducts = 0;
 
-  constructor (
+  constructor(
     private orderService: OrderService,
     private accountService: AccountService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
   ) { }
 
   ngOnInit(): void {
@@ -39,14 +41,13 @@ export class HeaderComponent {
       this.basket = JSON.parse(localStorage.getItem('basket') as string);
     }
     this.getTotalPrice();
-    if (this.basket.length > 0) {
-      this.openModalOrder = true;
-    }
   }
 
   getTotalPrice(): void {
+    this.amountProducts = this.basket
+      .reduce((total: number, prod: IProductResponse) => total + prod.count, 0);
     this.total = this.basket
-      .reduce((total: number, prod: IProductResponse) =>  total + prod.count * prod.price, 0)
+      .reduce((total: number, prod: IProductResponse) => total + prod.count * prod.price, 0)
   }
 
   updateBasket(): void {
@@ -77,7 +78,13 @@ export class HeaderComponent {
       this.checkUserLogin();
     })
   }
-
+  openCallbackDialog(): void {
+    this.dialog.open(CallbackComponent, {
+      backdropClass: 'dialog-back',
+      panelClass: 'callback-dialog',
+      autoFocus: false
+    })
+  }
   openLoginDialog(): void {
     this.dialog.open(AuthDialogComponent, {
       backdropClass: 'dialog-back',
@@ -85,21 +92,16 @@ export class HeaderComponent {
       autoFocus: false
     })
   }
-
-  modal(): void {
-    if (this.openModal) {
-      this.openModal = false;
-    } else {
-      this.openModal = true
-    }
+  openBasketDialog(): void {
+    this.dialog.open(BasketComponent, {
+      backdropClass: 'dialog-back',
+      panelClass: 'basket-dialog',
+      autoFocus: false,
+    })
   }
 
   menu(): void {
-    if (this.burgerList) {
-      this.burgerList = false
-    } else {
-      this.burgerList = true
-    }
+    this.burgerList = !this.burgerList
   }
 
 }

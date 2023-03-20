@@ -23,7 +23,7 @@ export class DiscountInfoComponent {
     })
   }
 
-  loadProduct(): void {
+  loadDiscount(): void {
     const id = Number(this.activatedRoute.snapshot.paramMap.get('id'));
     this.discountService.getOne(id).subscribe(data => {
       this.currentDiscount = data;

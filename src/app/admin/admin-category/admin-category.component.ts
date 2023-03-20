@@ -18,11 +18,11 @@ export class AdminCategoryComponent {
   public categoryForm!: FormGroup;
   public adminCategories: Array<ICategoryResponse> = [];
   public editStatus = false;
-  public currentID = 0;
+  public currentID!: number | string;
   public isUploaded = false;
   public uploadPercent = 0;
 
-  constructor (
+  constructor(
     private fb: FormBuilder,
     private categoryService: CategoryService,
     private storage: Storage
@@ -43,18 +43,30 @@ export class AdminCategoryComponent {
   }
 
   loadCategory(): void {
-    this.categoryService.getAll().subscribe(data => {
-      this.adminCategories = data
+    // this.categoryService.getAll().subscribe(data => {
+    //   this.adminCategories = data
+    // })
+
+    this.categoryService.getAllFirebase().subscribe(data => {
+      this.adminCategories = data as ICategoryResponse[];
     })
   }
 
-  addCategory(): void{
+  addCategory(): void {
     if (this.editStatus) {
-      this.categoryService.updateCategory(this.categoryForm.value, this.currentID).subscribe(() => {
+      // this.categoryService.updateCategory(this.categoryForm.value, this.currentID).subscribe(() => {
+      //   this.loadCategory();
+      // })
+
+      this.categoryService.updateFirebase(this.categoryForm.value, this.currentID as string).then(() => {
         this.loadCategory();
       })
     } else {
-      this.categoryService.createCategory(this.categoryForm.value).subscribe(() => {
+      // this.categoryService.createCategory(this.categoryForm.value).subscribe(() => {
+      //   this.loadCategory();
+      // })
+
+      this.categoryService.createFirebase(this.categoryForm.value).then(() => {
         this.loadCategory();
       })
     }
@@ -65,19 +77,27 @@ export class AdminCategoryComponent {
   }
 
   editCategory(category: ICategoryResponse): void {
-    this.categoryForm.patchValue({
-      date: category.id,
-      name: category.name,
-      path: category.path,
-      imagePath: category.imagePath
+    // this.categoryForm.patchValue({
+    //   date: category.id,
+    //   name: category.name,
+    //   path: category.path,
+    //   imagePath: category.imagePath
+    // })
+    // this.list = false;
+    // this.editStatus = true;
+    // this.currentID = category.id as number;
+
+    this.categoryService.getOneFirebase(category.id as string).subscribe(data => {
+      console.log(data, 'firebase');
     })
-    this.list = false;
-    this.editStatus = true;
-    this.currentID = category.id;
   }
 
   deleteCategory(category: ICategoryResponse): void {
-    this.categoryService.deleteCategory(category.id).subscribe(() => {
+    // this.categoryService.deleteCategory(category.id as number).subscribe(() => {
+    //   this.loadCategory();
+    // })
+
+    this.categoryService.deleteFirebase(category.id as string).then(() => {
       this.loadCategory();
     })
   }
@@ -119,7 +139,7 @@ export class AdminCategoryComponent {
 
   deleteImage(): void {
     const task = ref(this.storage, this.valueByControl('imagePath'));
-    deleteObject(task).then(()=> {
+    deleteObject(task).then(() => {
       this.isUploaded = false;
       this.uploadPercent = 0;
       this.categoryForm.patchValue({
