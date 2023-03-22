@@ -1,7 +1,6 @@
 import { TestBed } from '@angular/core/testing';
-
 import { DiscountService } from './discount.service';
-import {HttpClientTestingModule} from "@angular/common/http/testing";
+import { Firestore } from '@angular/fire/firestore';
 
 describe('DiscountService', () => {
   let service: DiscountService;
@@ -9,8 +8,11 @@ describe('DiscountService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        HttpClientTestingModule
-      ]
+
+      ],
+      providers: [
+        { provide: Firestore, useValue: {} }
+      ],
     });
     service = TestBed.inject(DiscountService);
   });

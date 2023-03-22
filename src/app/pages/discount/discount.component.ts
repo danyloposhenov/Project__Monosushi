@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Route, RouterEvent } from '@angular/router';
 import { IDiscountResponse } from 'src/app/shared/interfaces/discount/discount.interface';
 import { DiscountService } from 'src/app/shared/services/discount/discount.service';
 
@@ -21,8 +20,8 @@ export class DiscountComponent {
   }
 
   loadDiscounts(): void {
-    this.discountService.getAll().subscribe(data => {
-      this.userDiscounts = data;
+    this.discountService.getAllFirebase().subscribe(data => {
+      this.userDiscounts = data as IDiscountResponse[];
     })
   }
 

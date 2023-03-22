@@ -2,6 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { ProductService } from './product.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { Storage } from '@angular/fire/storage';
 
 describe('ProductService', () => {
   let service: ProductService;
@@ -10,6 +11,9 @@ describe('ProductService', () => {
     TestBed.configureTestingModule({
       imports: [
         HttpClientTestingModule
+      ],
+      providers: [
+        { provide: Storage, useValue: {} },
       ]
     });
     service = TestBed.inject(ProductService);

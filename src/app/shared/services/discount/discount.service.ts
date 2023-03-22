@@ -1,38 +1,40 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
-import { IDiscountRequest, IDiscountResponse } from '../../interfaces/discount/discount.interface';
+import { IDiscountRequest } from '../../interfaces/discount/discount.interface';
+import { addDoc, collection, collectionData, CollectionReference, deleteDoc, doc, docData, Firestore, updateDoc } from '@angular/fire/firestore';
+import { DocumentData } from '@firebase/firestore';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DiscountService {
 
-  private url = environment.BACKEND_URL;
-  private api = { discounts: `${this.url}/discounts` }
+  private categoryCollection!: CollectionReference<DocumentData>;
 
-  constructor(private http: HttpClient) { }
-
-  getAll(): Observable<IDiscountResponse[]> {
-    return this.http.get<IDiscountResponse[]>(this.api.discounts)
+  constructor ( private afs: Firestore ) {
+    this.categoryCollection = collection(this.afs, 'discounts')
   }
 
-  getOne(id: number): Observable<IDiscountResponse> {
-    return this.http.get<IDiscountResponse>(`${this.api.discounts}/${id}`)
+  getAllFirebase() {
+    return collectionData(this.categoryCollection, { idField: 'id' });
   }
 
-  create(discount: IDiscountRequest): Observable<IDiscountResponse> {
-    return this.http.post<IDiscountResponse>(this.api.discounts, discount)
+  getOneFirebase(id: string) {
+    const categoryDocumentReference = doc(this.afs, `discounts/${id}`);
+    return docData(categoryDocumentReference, { idField: 'id' });
   }
 
-  update(discount: IDiscountRequest, id: number): Observable<IDiscountResponse> {
-    return this.http.patch<IDiscountResponse>(`${this.api.discounts}/${id}`, discount)
+  createFirebase(discount: IDiscountRequest) {
+    return addDoc(this.categoryCollection, discount);
   }
 
-  delete(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.api.discounts}/${id}`)
+  updateFirebase(discount: IDiscountRequest, id: string) {
+    const discountDocumentReference = doc(this.afs, `discounts/${id}`);
+    return updateDoc(discountDocumentReference, {...discount});
   }
 
+  deleteFirebase(id: string) {
+    const discountDocumentReference = doc(this.afs, `discounts/${id}`);
+    return deleteDoc(discountDocumentReference);
+  }
 
 }

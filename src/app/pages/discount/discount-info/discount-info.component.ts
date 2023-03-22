@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, ActivatedRouteSnapshot, Resolve, Route, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { IDiscountResponse } from 'src/app/shared/interfaces/discount/discount.interface';
 import { DiscountService } from 'src/app/shared/services/discount/discount.service';
 
@@ -24,9 +24,9 @@ export class DiscountInfoComponent {
   }
 
   loadDiscount(): void {
-    const id = Number(this.activatedRoute.snapshot.paramMap.get('id'));
-    this.discountService.getOne(id).subscribe(data => {
-      this.currentDiscount = data;
+    const id = this.activatedRoute.snapshot.paramMap.get('id');
+    this.discountService.getOneFirebase(id as string).subscribe(data => {
+      this.currentDiscount = data as IDiscountResponse;
     })
   }
 

@@ -1,15 +1,14 @@
 import { TestBed } from '@angular/core/testing';
-
 import { DiscountInfoResolver } from './discount-info.resolver';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { Firestore } from '@angular/fire/firestore';
 
 describe('DiscountInfoResolver', () => {
   let resolver: DiscountInfoResolver;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        HttpClientTestingModule
+      providers: [
+        { provide: Firestore, useValue: {} },
       ]
     });
     resolver = TestBed.inject(DiscountInfoResolver);

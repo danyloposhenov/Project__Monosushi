@@ -19,9 +19,9 @@ import { provideAuth, getAuth } from '@angular/fire/auth';
 
 import { ToastrModule } from 'ngx-toastr';
 import { AuthDialogComponent } from './components/auth-dialog/auth-dialog.component';
-import { SharedModule } from './shared/shared.module';
 import { BasketComponent } from './components/basket/basket.component';
 import { CallbackComponent } from './components/callback/callback.component';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [

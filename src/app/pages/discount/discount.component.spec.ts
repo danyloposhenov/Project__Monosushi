@@ -1,8 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { DiscountComponent } from './discount.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { Firestore, getFirestore, provideFirestore } from '@angular/fire/firestore';
+import {initializeApp, provideFirebaseApp} from "@angular/fire/app";
+import {environment} from "../../../environments/environment";
 
 describe('DiscountComponent', () => {
   let component: DiscountComponent;
@@ -14,6 +16,9 @@ describe('DiscountComponent', () => {
       imports: [
         HttpClientTestingModule,
         RouterTestingModule
+      ],
+      providers: [
+        { provide: Firestore, useValue: {} },
       ]
     })
     .compileComponents();

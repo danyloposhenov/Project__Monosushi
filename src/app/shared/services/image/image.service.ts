@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { deleteObject, getDownloadURL, percentage, ref, Storage, uploadBytesResumable } from '@angular/fire/storage';
+import { deleteObject, getDownloadURL, ref, Storage, uploadBytesResumable } from '@angular/fire/storage';
 
 
 @Injectable({
@@ -9,9 +9,7 @@ export class ImageService {
 
   public uploadPercent = 0;
 
-  constructor(
-    private storage: Storage
-  ) { }
+  constructor ( private storage: Storage ) { }
 
   async uploadFile(folder: string, name: string, file: File | null): Promise<string> {
     const path = `${folder}/${name}`;
@@ -20,10 +18,6 @@ export class ImageService {
       try {
         const storageRef = ref(this.storage, path);
         const task = uploadBytesResumable(storageRef, file);
-
-        percentage(task).subscribe(data => {
-          this.uploadPercent = data.progress;
-        })
         await task;
         url = await getDownloadURL(storageRef);
       } catch (err: any) {

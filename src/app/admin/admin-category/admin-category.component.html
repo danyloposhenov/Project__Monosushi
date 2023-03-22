@@ -42,9 +42,6 @@
           <div class="forms__file">
             <input class="form-control" type="file" (change)="upload($event)">
           </div>
-          <div class="forms__file-progress">
-            <div [style.width.%]="uploadPercent"></div>
-          </div>
         </ng-container>
         <ng-container *ngIf="isUploaded">
           <div class="forms-download">

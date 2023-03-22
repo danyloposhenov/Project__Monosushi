@@ -98,7 +98,6 @@
 
 .forms {
   width: 700px;
-  font-family:Arial, Helvetica, sans-serif;
   &__input {
     width: 100%;
     margin-bottom: 20px;
@@ -122,7 +121,6 @@
     outline: none;
     border: 2px solid rgb(234, 233, 233);
     border-radius: 10px;
-    font-family:Arial, Helvetica, sans-serif;
     resize: none;
   }
   &__file {

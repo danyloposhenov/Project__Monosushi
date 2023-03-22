@@ -8,5 +8,4 @@ export const environment = {
     messagingSenderId: '871975302365',
   },
   production: false,
-  BACKEND_URL: 'http://localhost:3000'
 };

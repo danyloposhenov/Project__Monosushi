@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { deleteObject, getDownloadURL, percentage, ref, Storage, uploadBytesResumable } from '@angular/fire/storage';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { IDiscountRequest, IDiscountResponse } from 'src/app/shared/interfaces/discount/discount.interface';
+import { IDiscountResponse } from 'src/app/shared/interfaces/discount/discount.interface';
 import { DiscountService } from 'src/app/shared/services/discount/discount.service';
+import { ImageService } from 'src/app/shared/services/image/image.service';
 
 @Component({
   selector: 'app-admin-discount',
@@ -10,19 +10,20 @@ import { DiscountService } from 'src/app/shared/services/discount/discount.servi
   styleUrls: ['./admin-discount.component.scss']
 })
 export class AdminDiscountComponent {
+
   public list = true;
 
   public adminDiscounts: Array<IDiscountResponse> = [];
   public discountForm!: FormGroup;
   public editStatus = false;
-  private currentID = 0;
+  private currentID!: number | string;
   public isUploaded = false;
   public uploadPercent = 0;
 
   constructor(
     private fb: FormBuilder,
     private discountService: DiscountService,
-    private storage: Storage
+    private imageService: ImageService
   ) { }
 
   ngOnInit(): void {
@@ -32,7 +33,7 @@ export class AdminDiscountComponent {
 
   initDiscountForm(): void {
     this.discountForm = this.fb.group({
-      date: new Date(),
+      date: new Date().toLocaleString().toString(),
       name: [null, Validators.required],
       title: [null, Validators.required],
       description: [null, Validators.required],
@@ -41,24 +42,24 @@ export class AdminDiscountComponent {
   }
 
   loadDiscounts(): void {
-    this.discountService.getAll().subscribe(data => {
-      this.adminDiscounts = data;
+    this.discountService.getAllFirebase().subscribe(data => {
+      this.adminDiscounts = data as IDiscountResponse[];
     })
   }
 
   addDiscount(): void {
     if (this.editStatus) {
-      this.discountService.update(this.discountForm.value, this.currentID).subscribe(() => {
+      this.discountService.updateFirebase(this.discountForm.value, this.currentID as string).then(() => {
         this.loadDiscounts();
       })
     } else {
-      this.discountService.create(this.discountForm.value).subscribe(() => {
+      this.discountService.createFirebase(this.discountForm.value).then(() => {
         this.loadDiscounts();
       })
     }
     this.list = true;
     this.editStatus = false;
-    this.discountForm.reset();
+    this.discountForm.reset({date: new Date().toLocaleString().toString()});
     this.isUploaded = false;
     this.uploadPercent = 0;
   }
@@ -78,18 +79,18 @@ export class AdminDiscountComponent {
   }
 
   deleteDiscount(discount: IDiscountResponse): void {
-    this.discountService.delete(discount.id).subscribe(() => {
+    this.discountService.deleteFirebase(discount.id as string).then(() => {
       this.loadDiscounts();
     })
   }
 
   upload(event: any): void {
     const file = event.target.files[0];
-    this.uploadFile('images', file.name, file)
+    this.imageService.uploadFile('images', file.name, file)
       .then(data => {
         this.discountForm.patchValue({
           imagePath: data
-        });
+        })
         this.isUploaded = true;
       })
       .catch(err => {
@@ -97,40 +98,18 @@ export class AdminDiscountComponent {
       })
   }
 
-  async uploadFile(folder: string, name: string, file: File | null): Promise<string> {
-    const path = `${folder}/${name}`;
-    let url = '';
-    if (file) {
-      try {
-        const storageRef = ref(this.storage, path);
-        const task = uploadBytesResumable(storageRef, file);
-        percentage(task).subscribe(data => {
-          this.uploadPercent = data.progress;
-        });
-        await task;
-        url = await getDownloadURL(storageRef);
-      } catch (e: any) {
-        console.error(e);
-      }
-    } else {
-      console.log('wrong format');
-    }
-    return Promise.resolve(url)
-  }
-
   deleteImage(): void {
-    const task = ref(this.storage, this.valueByControl('imagePath'));
-    deleteObject(task).then(() => {
-      console.log('File deleted');
-      this.isUploaded = false;
-      this.uploadPercent = 0;
-      this.discountForm.patchValue({
-        imagePath: null
+    this.imageService.deleteUploadFile(this.valueByControl('imagePath'))
+      .then(() => {
+        this.isUploaded = false;
+        this.discountForm.patchValue({ imagePath: null })
       })
-    })
+      .catch(err => {
+        console.log(err);
+      })
   }
 
-  valueByControl(control: string): string {
+  valueByControl(control: string) {
     return this.discountForm.get(control)?.value
   }
 

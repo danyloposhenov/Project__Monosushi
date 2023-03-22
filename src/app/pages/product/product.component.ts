@@ -12,6 +12,8 @@ import { ProductService } from 'src/app/shared/services/product/product.service'
 })
 export class ProductComponent implements OnInit, OnDestroy {
 
+  public menu = false;
+
   public userProducts: Array<IProductResponse> = [];
   public eventSubscription!: Subscription;
   public titleName!: string;
@@ -29,13 +31,21 @@ export class ProductComponent implements OnInit, OnDestroy {
     })
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.LoadProducts();
+  }
 
   LoadProducts(): void {
     const categoryName = this.activatedRoute.snapshot.paramMap.get('category') as string;
-    this.productServive.getAllByCategory(categoryName).subscribe(data => {
-      this.userProducts = data;
-      this.titleName = data[0].category.name
+    this.productServive.getAllFirebase().subscribe(data => {
+      this.userProducts = data
+        .filter(prod => prod["category"].path == categoryName) as IProductResponse[];
+      this.titleName = this.userProducts[0].category.name;
+      if (this.userProducts[0].category.path == 'rolls') {
+        this.menu = true;
+      } else {
+        this.menu = false;
+      }
     })
   }
 
