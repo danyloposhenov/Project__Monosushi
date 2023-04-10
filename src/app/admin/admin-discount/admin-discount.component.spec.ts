@@ -1,9 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { AdminDiscountComponent } from './admin-discount.component';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { Firestore } from '@angular/fire/firestore';
-
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../../../environments/environment';
+import { getStorage, provideStorage } from '@angular/fire/storage';
+import { getAuth, provideAuth } from '@angular/fire/auth';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 describe('AdminDiscountComponent', () => {
   let component: AdminDiscountComponent;
   let fixture: ComponentFixture<AdminDiscountComponent>;
@@ -12,11 +13,11 @@ describe('AdminDiscountComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ AdminDiscountComponent ],
       imports: [
-        HttpClientTestingModule
+        provideFirebaseApp(() => initializeApp(environment.firebase)),
+        provideStorage(() => getStorage()),
+        provideAuth(() => getAuth()),
+        provideFirestore(() => getFirestore()),
       ],
-      providers: [
-        { provide: Firestore, useValue: {} },
-      ]
     })
     .compileComponents();
 

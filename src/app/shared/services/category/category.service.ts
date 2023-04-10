@@ -8,9 +8,9 @@ import { ICategoryRequest } from '../../interfaces/category/category.interface';
 })
 export class CategoryService {
 
-  private categoryCollection!: CollectionReference<DocumentData>;
+  public categoryCollection!: CollectionReference<DocumentData>;
 
-  constructor ( private afs: Firestore ) {
+  constructor ( public afs: Firestore ) {
     this.categoryCollection = collection(this.afs, 'categories');
   }
 

@@ -1,8 +1,7 @@
 import { TestBed } from '@angular/core/testing';
-
 import { ImageService } from './image.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { Storage } from '@angular/fire/storage';
+import {getDownloadURL, ref, Storage, uploadBytesResumable} from '@angular/fire/storage';
 import { ToastrService } from 'ngx-toastr';
 
 describe('ImageService', () => {
@@ -24,4 +23,5 @@ describe('ImageService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
 });

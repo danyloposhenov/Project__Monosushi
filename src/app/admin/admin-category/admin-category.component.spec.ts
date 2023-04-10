@@ -1,11 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { AdminCategoryComponent } from './admin-category.component';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { Storage } from '@angular/fire/storage';
 import { ToastrService } from 'ngx-toastr';
 import { RouterTestingModule } from '@angular/router/testing';
-
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../../../environments/environment';
+import { getStorage, provideStorage } from '@angular/fire/storage';
+import { getAuth, provideAuth } from '@angular/fire/auth';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 describe('AdminCategoryComponent', () => {
   let component: AdminCategoryComponent;
   let fixture: ComponentFixture<AdminCategoryComponent>;
@@ -14,7 +15,10 @@ describe('AdminCategoryComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ AdminCategoryComponent ],
       imports: [
-        HttpClientTestingModule,
+        provideFirebaseApp(() => initializeApp(environment.firebase)),
+        provideStorage(() => getStorage()),
+        provideAuth(() => getAuth()),
+        provideFirestore(() => getFirestore()),
         RouterTestingModule
       ],
       providers: [
@@ -32,4 +36,5 @@ describe('AdminCategoryComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
 });

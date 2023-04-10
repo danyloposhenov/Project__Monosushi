@@ -8,6 +8,7 @@ xdescribe('ProductInfoComponent', () => {
   let component: ProductInfoComponent;
   let fixture: ComponentFixture<ProductInfoComponent>;
 
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ ProductInfoComponent ],

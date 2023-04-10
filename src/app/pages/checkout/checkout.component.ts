@@ -9,6 +9,4 @@ import { OrderService } from 'src/app/shared/services/order/order.service';
 })
 export class CheckoutComponent {
 
- 
-
 }

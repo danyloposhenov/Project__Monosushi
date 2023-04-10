@@ -73,8 +73,6 @@ export class ProductComponent implements OnInit, OnDestroy {
     localStorage.setItem('basket', JSON.stringify(basket));
     this.orderService.changeBasket.next(true);
   }
-
-
   ngOnDestroy(): void {
     this.eventSubscription.unsubscribe();
   }

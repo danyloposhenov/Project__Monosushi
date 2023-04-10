@@ -8,14 +8,14 @@ import { DocumentData } from '@firebase/firestore';
 })
 export class DiscountService {
 
-  private categoryCollection!: CollectionReference<DocumentData>;
+  private discountCollection!: CollectionReference<DocumentData>;
 
   constructor ( private afs: Firestore ) {
-    this.categoryCollection = collection(this.afs, 'discounts')
+    this.discountCollection = collection(this.afs, 'discounts')
   }
 
   getAllFirebase() {
-    return collectionData(this.categoryCollection, { idField: 'id' });
+    return collectionData(this.discountCollection, { idField: 'id' });
   }
 
   getOneFirebase(id: string) {
@@ -24,7 +24,7 @@ export class DiscountService {
   }
 
   createFirebase(discount: IDiscountRequest) {
-    return addDoc(this.categoryCollection, discount);
+    return addDoc(this.discountCollection, discount);
   }
 
   updateFirebase(discount: IDiscountRequest, id: string) {

@@ -1,10 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DiscountComponent } from './discount.component';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { Firestore, getFirestore, provideFirestore } from '@angular/fire/firestore';
-import {initializeApp, provideFirebaseApp} from "@angular/fire/app";
-import {environment} from "../../../environments/environment";
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../../../environments/environment';
+import { getStorage, provideStorage } from '@angular/fire/storage';
+import { getAuth, provideAuth } from '@angular/fire/auth';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 
 describe('DiscountComponent', () => {
   let component: DiscountComponent;
@@ -14,12 +15,12 @@ describe('DiscountComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ DiscountComponent ],
       imports: [
-        HttpClientTestingModule,
+        provideFirebaseApp(() => initializeApp(environment.firebase)),
+        provideStorage(() => getStorage()),
+        provideAuth(() => getAuth()),
+        provideFirestore(() => getFirestore()),
         RouterTestingModule
       ],
-      providers: [
-        { provide: Firestore, useValue: {} },
-      ]
     })
     .compileComponents();
 
@@ -31,4 +32,6 @@ describe('DiscountComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+
 });
